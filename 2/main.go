@@ -58,7 +58,7 @@ func round1(rounds [][]int) {
 			points += 3
 		}
 
-		if round[1] - 1 == round[0] {
+		if round[1]-1 == round[0] {
 			points += 6
 		}
 
@@ -70,7 +70,6 @@ func round1(rounds [][]int) {
 	log.Println("Ponts:", points)
 }
 
-
 func round2(rounds [][]int) {
 	win := map[int]int{
 		1: 3,
@@ -78,11 +77,10 @@ func round2(rounds [][]int) {
 		3: 2,
 	}
 	lose := map[int]int{
-		3:1,
-		1:2,
-		2:3,
+		3: 1,
+		1: 2,
+		2: 3,
 	}
-
 
 	points := 0
 	for _, round := range rounds {
