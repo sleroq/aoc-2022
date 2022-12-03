@@ -8,28 +8,25 @@ import (
 )
 
 var priorities = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
 func toPriority(s string) int {
 	return strings.Index(priorities, s) + 1
 }
 
-func toString(s int) string {
-	return string(priorities[s])
-}
-
 func contains(elems []int, v int) bool {
-    for _, s := range elems {
-        if v == s {
-            return true
-        }
-    }
-    return false
+	for _, s := range elems {
+		if v == s {
+			return true
+		}
+	}
+	return false
 }
 
 type Rucksacks [][][]int
 
 func main() {
-	input, err := os.ReadFile("input")
-	// input, err := os.ReadFile("example-input")
+	// input, err := os.ReadFile("input")
+	input, err := os.ReadFile("example-input")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -61,7 +58,7 @@ func round1(data []string) {
 		rucksacks = append(rucksacks, make([][]int, 2))
 
 		for i, item := range line {
-			if len(line) / 2 > i {
+			if len(line)/2 > i {
 				rucksacks[a][0] = append(rucksacks[a][0], toPriority(string(item)))
 			} else {
 				rucksacks[a][1] = append(rucksacks[a][1], toPriority(string(item)))
@@ -74,19 +71,18 @@ func round1(data []string) {
 	log.Println(errorsSum)
 }
 
-
-func round2(data []string) {
+func round2(lines []string) {
 	rucksacks := Rucksacks{}
 
-	for a, line := range data {
+	for a, line := range lines {
 		if line == "" {
 			continue
 		}
-		if (a + 1) % 3 == 1 {
+		if (a+1)%3 == 1 {
 			rucksacks = append(rucksacks, make([][]int, 3))
 		}
 
-		group := int(math.Ceil(float64(a + 1) / 3.0)) - 1
+		group := int(math.Ceil(float64(a+1)/3.0)) - 1
 		elf := (a + 1) % 3
 
 		for _, item := range line {
